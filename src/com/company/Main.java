@@ -1,5 +1,6 @@
 package com.company;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
@@ -112,11 +113,11 @@ public class Main {
                      }
                      String[] columns = {"lp.","Weight","Value","Ratio"};
                      JTable table2 = new JTable(data,columns);
-                    table2.setBounds(50, 200, 50, 300);
+                    table2.setBounds(50, 200, 50, 200);
 
 
                     JScrollPane sp = new JScrollPane(table2);
-                    frame.add(BorderLayout.SOUTH,sp);
+                    frame.add(BorderLayout.WEST,sp);
                 }
             }
         });
