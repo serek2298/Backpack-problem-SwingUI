@@ -1,5 +1,7 @@
 package com.company;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 import java.io.*;
 import java.awt.*;
@@ -68,26 +70,39 @@ public class Main {
        int numOfItems=30;
         JFrame frame = new JFrame("Backpack Problem SwingUI");
         JPanel panel = new JPanel();
+        JPanel panel2 = new JPanel();
+        JPanel panel3 = new JPanel();
         JLabel txt1 = new JLabel("Enter Seed: ");
         JTextField txtField = new JTextField(5);
         JButton buttonSteal = new JButton("Steal");
-        JLabel info1 = new JLabel("");
-        JLabel info2 = new JLabel("%");
-        JLabel info3 = new JLabel("%");
-        JLabel result1 = new JLabel("None");
+
+        JLabel info1 = new JLabel("Stolen Items:");
+        JLabel info2 = new JLabel("Weight of stolen Items in %");
+        JLabel info3 = new JLabel("Value of stolen Items in %");
         JLabel result2 = new JLabel("None");
         JLabel result3 = new JLabel("None");
-        panel.add(txt1);
-        panel.add(txtField);
-        panel.add(buttonSteal);
-        panel.add(result1);
-        panel.add(result2);
-
+        panel2.add(txt1);
+        panel2.add(txtField);
+        panel2.add(buttonSteal);
+        panel3.add(info2);
+        panel3.add(result2);
+        panel3.add(info3);
+        panel3.add(result3);
+        buttonSteal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(txtField.getText() != "") {
+                    Result result = STEAL(Integer.parseInt(txtField.getText()));
+                    System.out.println(result.Backpack.capacity() + " | " + result.stolenItems + " | " + result.stolenValue);
+                }
+            }
+        });
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(panel);
+        frame.getContentPane().add(panel2);
+       //frame.getContentPane().add(panel3);
         frame.setSize(400,300);
-        Result result = STEAL(154);
-        System.out.println(result.Backpack.capacity()+" | "+result.stolenItems+" | "+result.stolenValue);
-frame.setVisible(true);
+
+        frame.setVisible(true);
     }
 }
