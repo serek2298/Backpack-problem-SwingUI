@@ -54,6 +54,7 @@ public class Main {
                 sumValue +=Items[i][1];
                 Backpack.add(Items[i]);
             }
+
         }
 
         Result result = new Result();
@@ -77,10 +78,11 @@ public class Main {
         JButton buttonSteal = new JButton("Steal");
 
         JLabel info1 = new JLabel("Hi, u are gonna steal items from Home there is 30 items inside each of them has got weight in range 1...10kg and value 1...1000kg,\n your backpack capacity is only 30kg Have fun!");
-        JLabel info2 = new JLabel("Weight of stolen Items in %");
-        JLabel info3 = new JLabel("Value of stolen Items in %");
+        JLabel info2 = new JLabel("Weight of stolen Items in %:");
+        JLabel info3 = new JLabel("Value of stolen Items in %:");
         JLabel result2 = new JLabel("None");
         JLabel result3 = new JLabel("None");
+
         panel.add(info1);
         panel2.add(txt1);
         panel2.add(txtField);
@@ -89,6 +91,7 @@ public class Main {
         panel3.add(result2);
         panel3.add(info3);
         panel3.add(result3);
+        JTable table = new JTable();
         buttonSteal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -96,14 +99,32 @@ public class Main {
                     Result result = STEAL(Integer.parseInt(txtField.getText()));
                      result2.setText(""+result.stolenItems);
                      result3.setText(""+result.stolenValue);
+                     String[][] data = new String[result.Backpack.capacity()][4];
+                     for(int i=0;i<result.Backpack.capacity();i++){
+
+                             try { data[i][0] = "" + i;
+
+                             data[i][1] = "" + (result.Backpack.elementAt(i)[0]);
+                             data[i][2] = "" + (result.Backpack.elementAt(i)[1]);
+                             data[i][3] = "" + (result.Backpack.elementAt(i)[2]);}
+                             catch (Exception error){System.out.println(error);}
+
+                     }
+                     String[] columns = {"lp.","Weight","Value","Ratio"};
+                     JTable table2 = new JTable(data,columns);
+                    table2.setBounds(50, 200, 50, 300);
+
+
+                    JScrollPane sp = new JScrollPane(table2);
+                    frame.add(BorderLayout.SOUTH,sp);
                 }
             }
         });
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(BorderLayout.NORTH,panel);
         frame.getContentPane().add(BorderLayout.CENTER,panel2);
-        frame.getContentPane().add(BorderLayout.SOUTH,panel3);
-        frame.setSize(1200,150);
+        frame.getContentPane().add(BorderLayout.EAST,panel3);
+        frame.setSize(1200,450);
 
         frame.setVisible(true);
     }
