@@ -74,7 +74,7 @@ public class Main {
         JPanel panel = new JPanel();
         JPanel panel2 = new JPanel();
         JPanel panel3 = new JPanel();
-        JLabel txt1 = new JLabel("Enter Seed: ");
+        JLabel txt1 = new JLabel("Enter Seed:");
         JTextField txtField = new JTextField(5);
         JButton buttonSteal = new JButton("Steal");
 
