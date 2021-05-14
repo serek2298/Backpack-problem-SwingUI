@@ -84,23 +84,26 @@ public class Main {
         panel2.add(txt1);
         panel2.add(txtField);
         panel2.add(buttonSteal);
+        panel2.setAlignmentY(100);
         panel3.add(info2);
         panel3.add(result2);
         panel3.add(info3);
         panel3.add(result3);
+        panel3.setAlignmentY(200);
         buttonSteal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(txtField.getText() != "") {
                     Result result = STEAL(Integer.parseInt(txtField.getText()));
-                    System.out.println(result.Backpack.capacity() + " | " + result.stolenItems + " | " + result.stolenValue);
+                     result2.setText(""+result.stolenItems);
+                     result3.setText(""+result.stolenValue);
                 }
             }
         });
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(panel);
-        frame.getContentPane().add(panel2);
-       //frame.getContentPane().add(panel3);
+        frame.getContentPane().add(BorderLayout.NORTH,panel);
+        frame.getContentPane().add(BorderLayout.CENTER,panel2);
+        frame.getContentPane().add(BorderLayout.SOUTH,panel3);
         frame.setSize(400,300);
 
         frame.setVisible(true);
