@@ -6,12 +6,13 @@ import java.awt.*;
 
 
 public class Main {
-    class Result{
+    static class Result{
         int stolenItems; // % of stolen items
         int stolenValue;    // % of stolen value
+        Vector<int[]> Backpack;
 
     };
-    public Result STEAL(int seed){
+    public static Result STEAL(int seed){
         ///////////////////PROGRAM//////////////////////
         int numOfItems = 30;
         int[][] Items = new int[numOfItems][3];
@@ -40,16 +41,25 @@ public class Main {
 
         Vector<int[]> Backpack = new Vector<>();
         int sum=0;
+        int allWeight=0;
+        int allValue=0;
+        int sumValue=0;
         for(int i=0;i<numOfItems;i++){
-
-            if(sum+ Items[i][1]<=capacity) {
-                sum +=Items[i][1];
+            allWeight += Items[i][0];
+            allValue += Items[i][1];
+            if(sum+ Items[i][0]<=capacity) {
+                sum +=Items[i][0];
+                sumValue +=Items[i][1];
                 Backpack.add(Items[i]);
             }
         }
 
+        Result result = new Result();
+        result.Backpack = Backpack;
+        result.stolenItems = 100*sum/allWeight;
+        result.stolenValue = 100*sumValue/allValue;
 
-        return new Result();
+        return result;
     };
     public static void main(String[] args) {
         System.out.println("Java&.NET LAB 2021 Grupa 5");
@@ -61,8 +71,12 @@ public class Main {
         JLabel txt1 = new JLabel("Enter Seed: ");
         JTextField txtField = new JTextField(5);
         JButton buttonSteal = new JButton("Steal");
+        JLabel info1 = new JLabel("");
+        JLabel info2 = new JLabel("%");
+        JLabel info3 = new JLabel("%");
         JLabel result1 = new JLabel("None");
         JLabel result2 = new JLabel("None");
+        JLabel result3 = new JLabel("None");
         panel.add(txt1);
         panel.add(txtField);
         panel.add(buttonSteal);
@@ -70,10 +84,10 @@ public class Main {
         panel.add(result2);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(buttonSteal);
+        frame.getContentPane().add(panel);
         frame.setSize(400,300);
-
-
+        Result result = STEAL(154);
+        System.out.println(result.Backpack.capacity()+" | "+result.stolenItems+" | "+result.stolenValue);
 frame.setVisible(true);
     }
 }
