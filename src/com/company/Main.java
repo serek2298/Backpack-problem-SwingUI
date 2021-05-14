@@ -76,20 +76,19 @@ public class Main {
         JTextField txtField = new JTextField(5);
         JButton buttonSteal = new JButton("Steal");
 
-        JLabel info1 = new JLabel("Stolen Items:");
+        JLabel info1 = new JLabel("Hi, u are gonna steal items from Home there is 30 items inside each of them has got weight in range 1...10kg and value 1...1000kg,\n your backpack capacity is only 30kg Have fun!");
         JLabel info2 = new JLabel("Weight of stolen Items in %");
         JLabel info3 = new JLabel("Value of stolen Items in %");
         JLabel result2 = new JLabel("None");
         JLabel result3 = new JLabel("None");
+        panel.add(info1);
         panel2.add(txt1);
         panel2.add(txtField);
         panel2.add(buttonSteal);
-        panel2.setAlignmentY(100);
         panel3.add(info2);
         panel3.add(result2);
         panel3.add(info3);
         panel3.add(result3);
-        panel3.setAlignmentY(200);
         buttonSteal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -104,7 +103,7 @@ public class Main {
         frame.getContentPane().add(BorderLayout.NORTH,panel);
         frame.getContentPane().add(BorderLayout.CENTER,panel2);
         frame.getContentPane().add(BorderLayout.SOUTH,panel3);
-        frame.setSize(400,300);
+        frame.setSize(1200,150);
 
         frame.setVisible(true);
     }
